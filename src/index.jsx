@@ -9,23 +9,23 @@ import { createHistory as history } from 'history';
 import { reducer as formReducer } from 'redux-form';
 
 import CarsIndex from './containers/cars_index';
-import CarsNew from './containers/cars_new';
 import CarsShow from './containers/cars_show';
-
+import CarsNew from './containers/cars_new';
 import '../assets/stylesheets/application.scss';
-
-const garageName = prompt("What is your garage");
-const initialState = {
-  garage: garageName,
-  cars: [],
-  form: formReducer
-};
 
 import carsReducer from './reducers/cars_reducer.js';
 
+// State and reducers
+const garageName = prompt("What is your garage?") || `garage${Math.floor(10 + (Math.random() * 90))}`;
+const initialState = {
+  garage: garageName,
+  cars: []
+};
+
 const reducers = combineReducers({
-    garage: (state = null , action ) => state,
-    cars: carsReducer
+  garage: (state = null, action) => state,
+  cars: carsReducer,
+  form: formReducer
 });
 
 const middlewares = applyMiddleware(reduxPromise, logger);
@@ -34,14 +34,14 @@ const middlewares = applyMiddleware(reduxPromise, logger);
 ReactDOM.render(
   <Provider store={createStore(reducers, initialState, middlewares)}>
     <Router history={history}>
-    <div className="view-container">
-      <Switch>
-        <Router path="/" exact component={CarsIndex} />
-        <Router path="cars/new" exact component={CarsNew} />
-        <Router path="cars/:id" component={CarsShow} />
-      </Switch>
+      <div className="view-container">
+        <Switch>
+          <Route path="/" exact component={CarsIndex} />
+          <Route path="/cars/new" exact component={CarsNew} />
+          <Route path="/cars/:id" component={CarsShow} />
+        </Switch>
       </div>
     </Router>
   </Provider>,
-  document.getElementById('root')
+  document.querySelector('.container')
 );

@@ -21,10 +21,10 @@ class CarsNew extends Component {
       </Aside>,
       <div className="form-container" key="add" style={{ backgroundImage: "url('/assets/images/form.jpg')"}}>
         <div className="overlay"></div>
-        <form onClick={this.props.handleClick(this.onSubmit)}>
+        <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
         <div className="form-group">
           <label htmlFor="InputBrand" >Brand</label>
-          <Field name="model" type="text" placeholder="Aston Martin" component="input" className="form-control" />
+          <Field name="brand" type="text" placeholder="Aston Martin" component="input" className="form-control" />
         </div>
         <div className="form-group">
         <label htmlFor="InputModel">Model</label>
