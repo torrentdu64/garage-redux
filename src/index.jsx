@@ -10,7 +10,7 @@ import { createHistory as history } from 'history';
 import '../assets/stylesheets/application.scss';
 
 const reducers = combineReducers({
-  // key: reducer
+
 });
 
 const middlewares = applyMiddleware(reduxPromise, logger);
